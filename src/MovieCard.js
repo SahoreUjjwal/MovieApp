@@ -8,7 +8,9 @@ export default class MovieCard extends React.Component{
             plot:"superhero movie",
             price:89,
             rating:8.9,
-            stars:3
+            stars:3,
+            fav:false,
+            addCart:false
         }
     }
     //if it is a normmal function then binding would be needed on calling 
@@ -45,8 +47,21 @@ export default class MovieCard extends React.Component{
             return;
         })
     }
+    toggleFavourite(){
+        this.setState({
+            fav:!this.state.fav
+        })
+    }
+    toggleCart(){
+        this.setState({
+            addCart:!this.state.addCart
+        })
+    }
+
+
+
     render(){
-        let {title,plot,price,rating,stars} = this.state;
+        let {title,plot,price,rating,stars,fav,addCart} = this.state;
         return (
             <>
                 <div className ="main">
@@ -66,11 +81,17 @@ export default class MovieCard extends React.Component{
                                             <img onClick={this.addStars} className = "str-btn" src ="https://cdn-icons-png.flaticon.com/128/992/992651.png" alt="increase"/>
                                             <span>{stars}</span>
                                     </div>
-                                    <button className="favourite-btn">
+                                    {/*fav ?  <button onClick={this.toggleFavoutite.bind(this)} className="unfavourite-btn">
+                                        Unfavourite
+                                    </button>:<button onClick={this.toggleFavoutite.bind(this)} className="favourite-btn">
                                         Favourite
+                                     </button>*/}
+                                    <button onClick={this.toggleFavourite.bind(this)} className={fav?"unfavourite-btn":"favourite-btn"}>
+                                        {fav?'unfavourite':'favourite'}
                                     </button>
-                                    <button className="cart-btn">
-                                        Add to cart
+
+                                    <button onClick={this.toggleCart.bind(this)} className="cart-btn">
+                                        {addCart?"Remove":"Add to cart"}
                                     </button>
                             </div>
                         </div>
