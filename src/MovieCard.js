@@ -31,11 +31,11 @@ export default class MovieCard extends React.Component{
                                     </button>:<button onClick={this.toggleFavoutite.bind(this)} className="favourite-btn">
                                         Favourite
                                      </button>*/}
-                                    <button className={fav?"unfavourite-btn":"favourite-btn"}>
+                                    <button onClick={()=>this.props.toggleFavourite(this.props.movie)} className={fav?"unfavourite-btn":"favourite-btn"}>
                                         {fav?'unfavourite':'favourite'}
                                     </button>
 
-                                    <button className="cart-btn">
+                                    <button onClick={()=>this.props.toggleCart(this.props.movie)} className="cart-btn">
                                         {addCart?"Remove":"Add to cart"}
                                     </button>
                             </div>
